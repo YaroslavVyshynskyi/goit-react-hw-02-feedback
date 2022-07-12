@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import css from "./Section.module.css";
 // import Statistics from "../Statistics/Statistics"
 import FeedBackOptions from "../FeedbackOptions/FeedbackOptions";
+import Statistics from '../Statistics/Statistics'
+import Notification from "../Notification/Notification"
 
 class Section extends React.Component {
 
@@ -10,12 +12,19 @@ class Section extends React.Component {
         good: 0,
         neutral: 0,
         bad: 0
+        // value: this.props.initialValue,
     };
     
+    calculations = {
+        total: 0,
+        positivePercentag: 0
+    }
+
     handleGoodFb = () => {
         this.setState((prevState) => {
             return {
                 good: prevState.good + 1,
+
             }
         })
     };
@@ -36,17 +45,27 @@ class Section extends React.Component {
         })
     };
 
+    countTotalFeedback = () => { 
+        const total = this.state.good + this.state.neutral + this.state.bad;
+        console.log(this.state.good);
+        console.log(this.state.neutral);
+        return {
+            total: total,
+        };
+    } 
+
+
     render() {
         return (
             <section className={css.section}>
-                <p className={css.section_title}>Title</p>
+                <p className={css.section_title}>{ this.props.title}</p>
                 {/* <FeedBackOptions /> */}
                 <div className={css.feedback_options}>
                     <button type="button" className={css.options_btn} onClick={ this.handleGoodFb }>Good</button>
                     <button type="button" className={css.options_btn} onClick={ this.handleNeutralFb }>Neutral</button>
                     <button type="button" className={css.options_btn} onClick={ this.handleBadFb }>Bad</button>
                 </div>
-
+                {this.calculations.total !== 0 ? ({/* <Statistics /> */ }) : ({Notification })}
                 {/* <Statistics /> */}
                 <div className={css.statistics}>
                     <p className={css.statistic_title}>Statistics</p>
@@ -65,7 +84,7 @@ class Section extends React.Component {
                         </li>
                         <li className={css.statistics_item}>
                             <span className={css.item_text}>Total:</span>
-                            <span className={css.item_value}></span>
+                            <span className={css.item_value}>{this.calculations.total}</span>
                         </li>
                         <li className={css.statistics_item}>
                             <span className={css.item_text}>Positive feedback</span>
