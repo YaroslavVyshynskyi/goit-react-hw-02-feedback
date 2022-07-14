@@ -1,3 +1,4 @@
+import React from "react";
 import Section from "./Section/Section";
 import FeedBackOptions from "./FeedbackOptions/FeedbackOptions";
 import Statistics from "./Statistics/Statistics";
@@ -55,7 +56,7 @@ class App extends Component {
     return (<div>
       <Section title="Please leave feedback">
         <FeedBackOptions
-          options={state.good, state.neutral, state.bad}
+          // options={this.state[good], this.state[neutral], this.state[bad]}
           onLeaveFeedback={this.handleGoodFb, this.handleNeutralFb, this.handleBadFb} />
         <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={0} positivePercentage={0}></Statistics>
       </Section>

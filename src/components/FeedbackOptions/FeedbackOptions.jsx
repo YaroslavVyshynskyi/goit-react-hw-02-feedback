@@ -2,16 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import css from "./FeedbackOptions.module.css";
 
-const FeedBackOptions = ({ {good, neutral, bad}, {handleGoodFb, handleNeutralFb, handleBadFb} }) => (
-    <div className={css.feedback_options}>
-        <button type="button" className={css.options_btn}
-            onClick={handleGoodFb}>{ good }</button>
-        <button type="button" className={css.options_btn}
-            onClick={handleNeutralFb}>{ neutral }</button>
-        <button type="button" className={css.options_btn}
-            onClick={handleBadFb}>{ bad }</button>
-    </div>
-);
+const FeedBackOptions = (
+    options = { good, neutral, bad },
+    onLeaveFeedback = { handleGoodFb, handleNeutralFb, handleBadFb }) => {
+    return (
+        <div className={css.feedback_options}>
+            <button type="button" className={css.options_btn}
+                onClick={handleGoodFb}>{good}</button>
+            <button type="button" className={css.options_btn}
+                onClick={handleNeutralFb}>{neutral}</button>
+            <button type="button" className={css.options_btn}
+                onClick={handleBadFb}>{bad}</button>
+        </div>
+    );
+};
 
 Statistics.propTypes = {
     good: PropTypes.string.isRequired,

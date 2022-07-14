@@ -98,7 +98,9 @@ import css from "./Section.module.css";
 // };
 
 const Section = ({ title }) => { 
-     <p className={css.section_title}>{title}</p>
+    return (
+        <p className={css.section_title}>{title}</p>
+    );    
 }
 
 Section.propTypes = {
