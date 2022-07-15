@@ -53,14 +53,15 @@ class App extends Component {
     };
   
   render() { 
-    return (<div>
-      <Section title="Please leave feedback">
-        <FeedBackOptions
-          // options={this.state[good], this.state[neutral], this.state[bad]}
-          onLeaveFeedback={this.handleGoodFb, this.handleNeutralFb, this.handleBadFb} />
-        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={0} positivePercentage={0}></Statistics>
-      </Section>
-    </div>
+    return (
+      <div>
+        <Section title="Please leave feedback">
+          <FeedBackOptions
+            options={this.state[good], this.state[neutral], this.state[bad]}
+            onLeaveFeedback={this.handleGoodFb, this.handleNeutralFb, this.handleBadFb} />
+          <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={0} positivePercentage={0}></Statistics>
+        </Section>
+      </div>
     );
   };
 };
