@@ -52,14 +52,30 @@ class App extends Component {
         })
     };
   
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
+    if (!total) {
+      return 0
+    }
+    const totalInPercentage = this.state.good / this.countTotalFeedback() * 100;
+    return Math.round(totalInPercentage);
+  };
+  
   render() { 
+    const options = Object.fromEntries(Object.entries(this.state).map(([key]) => [key,key]))
+    const onLeaveFeedback = { handleGoodFb: this.handleGoodFb, handleNeutralFb: this.handleNeutralFb, handleBadFb: this.handleBadFb };
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedBackOptions
-            options={this.state[good], this.state[neutral], this.state[bad]}
-            onLeaveFeedback={this.handleGoodFb, this.handleNeutralFb, this.handleBadFb} />
-          <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={0} positivePercentage={0}></Statistics>
+            options={options}
+            onLeaveFeedback={onLeaveFeedback} />
+          <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()}></Statistics>
         </Section>
       </div>
     );

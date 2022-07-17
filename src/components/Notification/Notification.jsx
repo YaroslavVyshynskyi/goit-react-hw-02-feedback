@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Notification = ({ message }) => {
-    alert(
-        message
-    )
+    return <div>
+        {message}
+    </div>
 };
 
 Notification.propTypes = {

@@ -97,9 +97,12 @@ import css from "./Section.module.css";
 //     };
 // };
 
-const Section = ({ title }) => { 
+const Section = ({ title, children }) => { 
     return (
-        <p className={css.section_title}>{title}</p>
+        <>
+            <p className={css.section_title}>{title}</p>
+            {children}
+        </>    
     );    
 }
 
